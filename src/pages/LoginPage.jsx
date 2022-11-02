@@ -32,7 +32,12 @@ function LoginPage() {
             "email": formData['email'],
             "password": formData['password']
           };
-        AuthService.Login(userData)
+
+          let headers = {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+          };
+        AuthService.Login(userData, headers)
         .then(data => {
             if(data.statusCode===200){
                 saveSessionData(data.body);

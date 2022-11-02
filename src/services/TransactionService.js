@@ -4,13 +4,13 @@ var API = new APIClient();
 
 
 export const TransactionService = {
-    Inititate: async (payload) => {
-        return await API.post(`/api/Transactions/Initiate`, payload);
+    Inititate: async (payload, headers) => {
+        return await API.post(`/api/Transactions/Initiate`, payload, headers);
     },
-    Confirm: async (payload) => {
-        return await API.post(`/api/Transactions/Confirm`, payload);
+    Confirm: async (payload, headers) => {
+        return await API.post(`/api/Transactions/Confirm`, payload, headers);
     },
-    History: async (accountNumber) => {
-        return await API.get(`/api/Transactions/History/${accountNumber}`);
+    History: async (accountNumber, headers) => {
+        return await API.get(`/api/Transactions/History/${accountNumber}`,headers);
     }
 }

@@ -16,7 +16,14 @@ function Dashboard() {
         if(accountNumber === null) {
             setAccountNumber(getSessionData()?.user?.accounts[0].accountNumber)
         }else{
-            AccountService.GetDetails(accountNumber)
+            let headers = {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "x-api-key": process.env.REACT_APP_APIKEY,
+                "user-id": getSessionData()?.user.customerId,
+                "Authorization": `Bearer ${getSessionData()?.token}`
+                };
+            AccountService.GetDetails(accountNumber, headers)
             .then(data => {
                 if(data.statusCode===200){
                     console.log(data.body);

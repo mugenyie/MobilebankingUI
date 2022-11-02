@@ -20,7 +20,15 @@ function History() {
     const [accountHistory, setAccountHistory] = useState(null);
 
     useEffect(() => {
-        TransactionService.History(accountNumber)
+        let headers = {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "x-api-key": process.env.REACT_APP_APIKEY,
+            "user-id": getSessionData()?.user.customerId,
+            "Authorization": `Bearer ${getSessionData()?.token}`
+            };
+
+        TransactionService.History(accountNumber, headers)
         .then(data => {
             if(data.statusCode===200){
                 console.log(data.body);

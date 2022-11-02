@@ -3,24 +3,24 @@ class APIClient {
       this.baseUrl = process.env.REACT_APP_BACKEND_URL;
     }
   
-    post(endpoint, params, headers = null) {
+    post(endpoint, params, headers = {}) {
       console.log(this.baseUrl);
       return this.requestHttp("POST", this.baseUrl + endpoint, params, headers);
     }
   
-    get(endpoint, headers = null) {
+    get(endpoint, headers = {}) {
       return this.requestHttp("GET", this.baseUrl + endpoint, null, headers);
     }
   
-    put(endpoint, params, headers = null) {
+    put(endpoint, params, headers = {}) {
       return this.requestHttp("PUT", this.baseUrl + endpoint, params, headers);
     }
   
-    patch(endpoint, params, headers = null) {
+    patch(endpoint, params, headers = {}) {
       return this.requestHttp("PATCH", this.baseUrl + endpoint, params, headers);
     }
   
-    delete(endpoint, params, headers = null) {
+    delete(endpoint, params, headers = {}) {
       return this.requestHttp("DELETE", this.baseUrl + endpoint, params, headers);
     }
   
@@ -28,17 +28,11 @@ class APIClient {
       return new Promise((resolve, reject) => {
         const options = {
           method,
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
+          headers: headers
         };
         console.log(method+" "+url);
         if (params) {
           options.body = JSON.stringify(params);
-        }
-        if (headers) {
-          options.headers.Authorization = `Bearer ${headers}`;
         }
         fetch(url, options)
           .then((response) => {
@@ -59,3 +53,8 @@ class APIClient {
   }
   
   export default APIClient;
+
+//   {
+//     Accept: "application/json",
+//     "Content-Type": "application/json",
+//   },

@@ -6,7 +6,6 @@ import { useAuthContext } from './contexts/AuthContext';
 import Dashboard from './pages/Dashboard';
 import History from './pages/History';
 import LoginPage from './pages/LoginPage';
-import SelectAccount from './pages/SelectAccount';
 import Transaction from './pages/Transaction';
 
 const AuthPage = () => (
@@ -15,7 +14,6 @@ const AuthPage = () => (
       <Routes>
         <Route path="*" element={<Navigate to='/'/>} />
         <Route path="/" element={<LoginPage/>} />
-        <Route path="/select-account" element={<SelectAccount />} />
       </Routes>
     </AuthLayout>
   </BrowserRouter>

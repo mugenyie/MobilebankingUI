@@ -4,7 +4,7 @@ var API = new APIClient();
 
 
 export const AccountService = {
-    GetDetails: async (accountNumber) => {
-        return await API.get(`/v1/Accounts/Details?accountNumber=${accountNumber}`);
+    GetDetails: async (accountNumber, headers) => {
+        return await API.get(`/v1/Accounts/Details?accountNumber=${accountNumber}`, headers);
     }
 }

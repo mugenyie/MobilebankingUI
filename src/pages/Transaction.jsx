@@ -19,12 +19,20 @@ function Transaction() {
 
     const handleChange=(e)=>setFormData({...formData,[e.target.id]:e.target.value});
 
+    let headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "x-api-key": process.env.REACT_APP_APIKEY,
+        "user-id": getSessionData()?.user.customerId,
+        "Authorization": `Bearer ${getSessionData()?.token}`
+        };
+
+    
     const confirmTransaction = () => {
-        console.log('hey')
         let payload = {
             "transactionToken": transactionData.transactionToken
           };
-        TransactionService.Confirm(payload)
+        TransactionService.Confirm(payload, headers)
         .then(data => {
             if(data.statusCode===200){
                 console.log(data.body);
@@ -55,7 +63,7 @@ function Transaction() {
             "amount": parseInt(formData['amount']),
             "description": formData['comments']
           };
-        TransactionService.Inititate(payload)
+        TransactionService.Inititate(payload, headers)
         .then(data => {
             if(data.statusCode===200){
                 console.log(data.body);
@@ -95,7 +103,7 @@ function Transaction() {
                 <p><span className='font-semibold'>Recipient Name:</span> {transactionData.transactionRequest.recipientName}</p>
                 <p><span className='font-semibold'>Recipient PhoneNumber:</span> {transactionData.transactionRequest.recipientPhoneNumber}</p>
                 <p><span className='font-semibold'>Amount:</span> {transactionData.transactionRequest.amount}</p>
-                <p><span className='font-semibold'>Desciption:</span> {transactionData.transactionRequest.description}</p>
+                <p><span className='font-semibold'>Description:</span> {transactionData.transactionRequest.description}</p>
                 </div>
                 
                 <ButtonAction onClick={confirmTransaction} text={'Confim Transaction'} />
