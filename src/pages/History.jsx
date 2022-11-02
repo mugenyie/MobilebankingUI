@@ -59,6 +59,7 @@ function History() {
                 <th className="py-3 text-left">Recipient Name</th>
                 <th className="py-3 text-left">Recipient Phone</th>
                 <th className="py-3 text-left">New Balance</th>
+                <th className="py-3 text-left">Status</th>
             </tr>
         </thead>
         <tbody className="text-gray-600 dark:text-white text-sm font-light">
@@ -81,6 +82,9 @@ function History() {
             </td>
             <td className="py-3 text-left">
               <span>{account.newBalance}</span>
+            </td>
+            <td className="py-3 text-left">
+              <span>{account.transactionStatusMessage}</span>
             </td>
           </tr>
           ))}
