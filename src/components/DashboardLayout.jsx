@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
 
 export default function DashboardLayout({children}) {
-    const {logOut, getSessionData, setAccountNumber} = useAuthContext();
+    const {logOut, getSessionData, setAccountNumber, accountNumber} = useAuthContext();
 
     const switchAccount = (x) =>{
         console.log(x);
@@ -21,7 +21,7 @@ export default function DashboardLayout({children}) {
                 <span className="font-semibold text-base">Accounts</span>
                     {getSessionData()?.user?.accounts.map(account => 
                         <div onClick={() => switchAccount(account.accountNumber)} key={account.accountNumber} 
-                         className='w-32 flex flex-col border-y border-gray-200 cursor-pointer py-2'>
+                         className={`${(account.accountNumber == accountNumber) && 'bg-black text-white'} w-32 flex flex-col border-y border-gray-200 cursor-pointer py-2 px-3`}>
                             <span>{account.accountNumber}</span>
                             <span>{account.name}</span>
                         </div>)}
