@@ -38,6 +38,7 @@ function Transaction() {
                 console.log(data.body);
                 setLoading(false);
                 setTransactionComplete(true);
+                setError(null);
               }
               else{
                   setError(data.body);
@@ -68,6 +69,7 @@ function Transaction() {
             if(data.statusCode===200){
                 console.log(data.body);
                 setTransactionData(data.body);
+                setError(null);
                 setLoading(false);
               }
               else{
